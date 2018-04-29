@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins|Raleway');
+$orange:#F97300;
+$white:#f8f8f8;
+$blue:#303044;
+$rlw:"Raleway";
+$pop:'Poppins';
+$fontColor:#666;
+.survey{
+   padding: 1em;
+   .main{
+   	margin: 1em auto;
+   	width: 40em;
+   	@media (max-width: 768px) {
+		width: 100%;
+		text-align: center;
+		}
+		.progressBar .list-unstyled{
+		/*CSS counters to number the steps*/
+		counter-reset: step;
+		@media (max-width: 768px) {
+				//width:100%;
+			}
+			li{
+
+			list-style-type: none;
+			background: #ccc;
+			height: 2px;
+			width: 11.1111%;
+			margin-right: 5px;
+			float: left;
+			position: relative;
+			transition:background .3s ease-in;
+			@media (max-width: 768px) {
+				margin-right:0px;
+			}
+			&::after{
+			content: '';
+			width: 15px;
+			height: 15px;
+			background: #ccc;
+			position: absolute;
+			bottom: -6px;
+			left: 61px;
+			transition:background .3s ease-in;
+			border-radius: 50%;
+			@media (max-width: 768px) {
+				  left: 22px;
+			}
+				
+			}
+			&:last-child{
+			float: right;
+			margin-right: -40px;
+			@media (max-width: 768px) {
+				margin-right: 0px;
+				float: right;
+			}
+
+			}
+			
+			}
+
+			.active{
+				background: $orange;
+				&:after{
+					background: $orange;
+				}
+			}
+		}
+        .rate{
+				.list-inline-item{
+					width: 5em !important;
+				}
+
+			}
+		// survey fieldse
+		.suervey-fields{
+			position: relative;
+			top: 4em;
+			max-width: 60em;
+			@media (max-width: 768px) {
+						width: 100%;
+					}
+			h3{
+				font-family: $rlw;
+			}
+			.first-field{
+				@media (max-width: 768px) {
+						width: 100%;
+					}
+
+				.list-inline{
+					max-width: 50em;
+					margin: 1em auto;
+					@media (max-width: 768px) {
+						width: 100%;
+					}
+					li{ 
+					    width: 20em;
+					   margin: 1em auto;
+						padding: 5px;
+						color: $orange;
+						font-family: $rlw;
+						border:1px solid $orange;
+						cursor: pointer;
+						&:focus{
+							background: $orange !important;
+						}
+					}
+				}
+				.btn-default{
+					background: $orange;
+					font-family: $rlw;
+					width: 10em;
+					color: $white;
+					margin: 1em;
+				}
+				p{
+					font-family: $pop;
+				}
+				// credit card input styled
+				.center-credit{
+				display: flex;
+				justify-content: center;
+                 .input-group{
+                 	 .form-contole{
+                 	 	height: 2em;
+                 	 }
+                 	.input-group-text{
+
+                 	}
+                 }
+				}
+
+				// upload files list-style-position: 
+				.upoad-file{
+					overflow: hidden;
+					width: 30em;
+					display: -webkit-box;
+					display: -ms-flexbox;
+					display: flex;
+					-webkit-box-pack: center;
+					-ms-flex-pack: center;
+					justify-content: center;
+					flex-direction: column;
+					align-items: center;
+					margin: auto;
+					@media (max-width: 768px) {
+						width: 100%;
+					}
+					.btn-secoundary{
+						min-width: 20em;
+						margin:1em;
+						display: block;
+						padding: 10px;
+						color: $orange;
+						font-weight: bold;
+						border:2px solid $orange;
+						font-family: $rlw;
+						background: #f4f4f4;
+						border-radius: 0;
+					}
+					.hidden{
+			background: white;
+			position: absolute;
+			z-index: -11;
+			right: 50em;
+			
+					}
+				}
+			}
+		}
+   	
+   }
+}
+
+.fieldtran-enter-active{
+	animation:fadeIn .3s linear;
+	animation-timing-function: cubic-bezier(.02,0213,0256,111)
+}
+@keyframes fadeIn{
+	from{
+		opacity: 0;
+	}
+	to{
+		opacity: 1;
+	}
+}

@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins|Raleway');
+$orange:#F97300;
+$white:#f8f8f8;
+$blue:#303044;
+$rlw:"Merriweather";
+$pop:'Poppins';
+$fontColor:#666;
+.loginSuccess{
+   padding: 4em;
+   .main{
+   	margin: 1em auto;
+   	width: 30em;
+   	@media (max-width: 768px) {
+		width: 100%;
+		}
+   	h3{
+   		font-family: $rlw;
+   		margin-bottom: 1em;
+   	}
+   	h4{
+   		font-family: $rlw;
+   		line-height: 1.7;
+   		margin-bottom: 1em;
+   	}
+   	.btn-default{
+   		background: $orange;
+   		color: $white;
+   		width: 10em;
+   		font-family: $rlw;
+   	}
+   }
+}

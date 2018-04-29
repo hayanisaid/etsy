@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins|Raleway');
+$orange:#F97300;
+$white:#f8f8f8;
+$blue:#303044;
+$rlw:"Merriweather";
+$pop:'Raleway';
+$fontColor:#666;
+p{
+	font-size: 20px;
+}
+
+.body-page{
+	.first-div{
+		background: $orange;
+	padding: 4em 2em;
+	h1{
+		color: $white;
+		font-family: $rlw;
+	}
+	p{
+		color: $white;
+		font-family: $pop;
+		line-height: 1.7;
+
+	}
+	}
+	// second div
+   .second-div{
+   	background: $blue;
+	padding: 4em 2em;
+	
+	.desc{
+		width: 26em;
+		margin: 0 auto;
+		@media (max-width: 768px) {
+		width: 100%;
+	}
+	h1{
+		color: $white;
+		font-family: $rlw;
+	}
+	p{
+		color: $white;
+		font-family: $pop;
+		line-height: 1.7;
+
+	}	
+	}
+	
+   }
+   .third-div{
+   	background: $white;
+   	padding: 4em 2em;
+   	margin:2em 0;
+   	.desc{
+		
+		margin: 0 auto;
+		width: 30em;
+	@media (max-width: 768px) {
+		width: 100%;
+	}
+		img{
+			width: 10em;
+		}
+	h4{
+		color: $fontColor;
+		font-family: $rlw;
+	}
+	p{
+		color: $fontColor;
+		font-family: $pop;
+		line-height: 1.7;
+
+	}
+	span{
+	font-family: $rlw;	
+	}	
+	}
+
+   }
+   .fourth-div{
+   	background: $orange;
+   	padding: 4em 2em;
+   	.desc{
+   		width: 30em;
+		@media (max-width: 768px) {
+		width: 100%;
+		}
+		margin: 0 auto;
+   		h1{
+		color: $white;
+		font-family: $rlw;
+	}
+	p{
+		color: #f4f4f4;
+		font-family: $pop;
+
+	}
+	.btn-default{
+		width: 10em;
+		background: transparent;
+		border:1px solid $white;
+		color: $white;
+		font-family: $rlw;
+	}
+   	}
+   }
+	
+}

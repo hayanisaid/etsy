@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins|Raleway');
+$orange:#F97300;
+$white:#f8f8f8;
+$blue:#303044;
+$rlw:"Merriweather";
+$pop:'Raleway';
+$fontColor:#666;
+
+.header{
+	 background: $white;
+	 padding: 1em ;
+	 position: relative;
+	.logo{
+     width: 4em;
+	}
+	.btn-default{
+		background: $orange;
+		color: $white;
+	}
+	.header-top{
+		position: relative;
+		top: -67px;
+	}
+	.main{
+	margin: 4em auto;
+
+	top: 7em;
+	width: 30em;
+		@media (max-width: 768px) {
+		width: 100%;
+	}
+	h1{
+		color: $orange;
+		font-family: $rlw;
+	}
+	p{
+	font-family: $pop;
+	 color: $fontColor;
+	 line-height: 1.7;
+	 font-size: 20px;	
+	}
+	.main-footer{
+		.btn{
+			width: 10em;
+			margin:5px;
+			font-family: $rlw;
+			&:focus{
+				border:0 !important;
+			}
+		}
+		.btn-outline-default{
+          border:1px solid $orange;
+          background: transparent !important;
+          color: $orange;
+		}
+		.btn-secondary{
+			background: $orange;
+			color: $white;
+			border:0;
+		}
+	}
+	}
+}

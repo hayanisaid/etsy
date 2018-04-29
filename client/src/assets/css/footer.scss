@@ -1,0 +1,33 @@
+//@import url('https://fonts.googleapis.com/css?family=Raleway');
+$orange:#F97300;
+$white:#f8f8f8;
+$blue:#303044;
+$rlw:"Merriweather";
+$pop:'Poppins';
+$fontColor:#666;
+.footer{
+	background: $white;
+	padding: 1em;
+	position: relative;
+	bottom: 0;
+	width: 100%;
+	 margin-top: 5em;
+	.float-left{
+		img{
+			width: 3em;
+			margin-right: 1em;
+		}
+		span{
+			color: $fontColor;
+			font-family: $rlw;
+			font-size: 13px;
+		}
+	}
+	.float-right{
+		right: 0;
+		ul li a{
+		    color: $fontColor;
+			font-family: $rlw;	
+		}
+	}
+}
