@@ -2,13 +2,15 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "src/app.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "startSer": "node src/app.js",
-    "server": "nodemon src/app.js",
+    "startSer": "node server.js",
+    "server": "nodemon server.js",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\" "
+    "dev": "concurrently \"npm run server\" \"npm run client\" ",
+     "heroku-postbuild": "npm install --only=dev --no-shrinkwrap && npm run build",
+     "build": "node client/build/build.js"
   },
   "keywords": [],
   "author": "",
