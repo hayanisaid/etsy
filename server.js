@@ -15,6 +15,10 @@ let port =8081;
 //app.use("/", serveStatic ( path.join ('/client/dist') ) )
 app.use(express.static(__dirname + '/client/dist'));
 
+app.get('*', function(request, response) {
+  response.redirect(__dirname + '/client/dist');
+});
+
 //set the home page route
  // app.get('/', function(req, res) {
 
