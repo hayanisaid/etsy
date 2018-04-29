@@ -115,6 +115,9 @@ $fontColor:#666;
 					color: $white;
 					margin: 1em;
 				}
+				.form-control::placeholder{
+				font-family: $rlw;	
+				}
 				p{
 					font-family: $pop;
 				}

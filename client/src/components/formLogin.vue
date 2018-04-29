@@ -54,12 +54,11 @@
 <style src='../assets/css/formLogin.scss' lang='scss'></style>
 <script >
 // import components
-import loginSuccess from './loginSuccess';
+//import loginSuccess from './loginSuccess';
 import survey from './survey'
 
 	export default{
      components:{
-     	loginSuccess,
      	survey
      },
      data(){
@@ -73,7 +72,7 @@ import survey from './survey'
      	loginToserv:function(){
      		let user=this.usernameLogin;
      		this.success=true;
-     		this.$router.push({name:'loginSuccess',params:{name:user}})
+     		this.$router.push({name:'survey'})
      	}
      }
 	}
