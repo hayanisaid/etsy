@@ -13,14 +13,14 @@ let port =8081;
 
 // rediredct to vue app
 app.use("/", serveStatic ( path.join ('/client/dist') ) )
-app.use(express.static(__dirname + '/client/dist'));
+//app.use(express.static(__dirname + '/client/dist'));
 
 // set the home page route
- app.get('/', function(req, res) {
+//  app.get('/', function(req, res) {
 
-    // ejs render automatically looks in the views folder
-    res.render('index');
-});
+//     // ejs render automatically looks in the views folder
+//     res.render('index');
+// });
 
 const email =require('./sendmail')
 
