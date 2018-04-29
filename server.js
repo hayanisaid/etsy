@@ -12,11 +12,11 @@ app.use(cors());
 let port =8081;
 
 // rediredct to vue app
-//app.use("/", serveStatic ( path.join ('/client/dist') ) )
+app.use("/", serveStatic ( path.join ('/client/dist') ) )
 app.use(express.static(__dirname + '/client/dist'));
 
-app.get('*', function(request, response) {
-  response.redirect(__dirname + '/client/dist');
+ app.get('*', function(request, response) {
+   response.redirect('/client/dist/index.html');
 });
 
 //set the home page route
