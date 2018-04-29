@@ -12,17 +12,17 @@ app.use(cors());
 let port =8081;
 
 // rediredct to vue app
-app.use("/", serveStatic ( path.join ('/client/dist') ) )
+//app.use("/", serveStatic ( path.join ('/client/dist') ) )
 app.use(express.static(__dirname + '/client/dist'));
 
-// set the home page route
-//  app.get('/', function(req, res) {
+//set the home page route
+ // app.get('/', function(req, res) {
 
-//     // ejs render automatically looks in the views folder
-//      let filePath = __dirname + '/client/dist/';
-//       res.sendfile(filePath);
+ //    // ejs render automatically looks in the views folder
+ //     let filePath = __dirname + '/client/dist/';
+ //      res.sendfile(filePath);
 
-// });
+ // });
 
 const email =require('./sendmail')
 
