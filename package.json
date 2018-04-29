@@ -8,7 +8,7 @@
     "startSer": "node src/app.js",
     "server": "nodemon src/app.js",
     "client": "npm start --prefix client",
-    "start": "concurrently \"npm run server\" \"npm run client\" "
+    "dev": "concurrently \"npm run server\" \"npm run client\" "
   },
   "keywords": [],
   "author": "",
