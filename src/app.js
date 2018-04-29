@@ -3,13 +3,21 @@ const path=require('path');
 const bodyparser=require('body-parser');
 const cors=require('cors');
 const morgan=require('morgan');
-
+const serveStatic = require('serve-static')
 
 const app=express();
 app.use(morgan('combined'));
 app.use(bodyparser.json());
 app.use(cors());
 let port =8081;
+
+// rediredct to vue app
+app.use("/", serveStatic ( path.join (__dirname, 'client/dist') ) )
+
+// Catch all routes and redirect to the index file
+app.get('*', function (req, res) {
+    res.sendFile(__dirname + 'client/dist/index.html')
+})
 
 const email =require('./sendmail')
 
