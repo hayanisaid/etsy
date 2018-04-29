@@ -7,6 +7,7 @@
 </template>
 
 <script>
+/*import compo*/
 import './../node_modules/bootstrap/scss/bootstrap.scss';
 import HeaderPage from './components/headerPage';
 import bodyPage from './components/bodyPage';
