@@ -303,8 +303,10 @@ import axios from 'axios';
              	cardC:this.cardCredit,
              	files:formData
              }
-             const send=sendmailService.sendMail(emailData)
-             .then(res=>console.log(res)).catch(err=>console.log(err))
+             const send=sendmailService.sendMail(emailData).then(res => {
+             	this.$router.push({name:'thanks'})
+             	console.log(res)
+             	}).catch(err => {console.log(err)})
 				// axios.post( 'http://localhost:5000/maildata',
 				// emailData,
 				// {
