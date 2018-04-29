@@ -50,7 +50,13 @@ app.post('/maildata',(req,res)=>{
 
 
 
-app.listen(port,(s)=>{
-	console.log(`app runing with port ${port}`)
-})
+// app.listen(port,(s)=>{
+// 	console.log(`app runing with port ${port}`)
+// })
 //app.listen(process.env.PORT || 8081)
+app.set( 'port', ( process.env.PORT || 5000 ));
+
+// Start node server
+app.listen( app.get( 'port' ), function() {
+  console.log( 'Node server is running on port ' + app.get( 'port' ));
+  });
