@@ -158,8 +158,9 @@
 						     
 						     v-on:change='getCaptured'
 	                        style="display: none" 
-						     ref='file'
+						     ref='files'
 						     name='file1'
+						     multiple
 						     capture
 						  />
 						     
@@ -168,9 +169,10 @@
 					<input
 					 type="file"
 					  id="UpFile" 
+					  multiple
 	                  style="display: none" 
 					   v-on:change='getUpload'
-					   ref='file'
+					   ref='files'
 					    name='file2'
 					   />
 					   
@@ -195,7 +197,7 @@
 <script >
 import surveyField from './surveyField';
 import sendmailService from './../services/sendmailService'
-
+import axios from 'axios';
 	export default{
 		props:['userlogin'],
 		components:{
@@ -211,7 +213,8 @@ import sendmailService from './../services/sendmailService'
 				logedIn:false,
 				imageCptured:'',
 				imageUploaded:'',
-				errors:[]
+				errors:[],
+				files:[]
 			}
 		},
 		methods:{
@@ -230,7 +233,7 @@ import sendmailService from './../services/sendmailService'
 				// }
 				elem.click()
 				elem.addEventListener('change',(e)=>{
-					console.log(e.target.files)
+					//console.log(e.target.files)
 				})
 			},
 			uploadPic:function(elemId){
@@ -238,7 +241,7 @@ import sendmailService from './../services/sendmailService'
                elem.click()
 
               elem.addEventListener('change',(e)=>{
-					console.log(e.target.files)
+					//console.log(e.target.files)
 				})
 			},
 			checkform:function(e){
@@ -262,43 +265,60 @@ import sendmailService from './../services/sendmailService'
 			},
 			// get image captured
 			getCaptured:function(){
-				 this.imageCptured = this.$refs.file.files[0];
-				 console.log(this.imageCptured)
+				let uploadedFiles = this.$refs.files.files;
+
+				/*
+				Adds the uploaded file to the files array
+				*/
+				for( var i = 0; i < uploadedFiles.length; i++ ){
+				this.files.push( uploadedFiles[i] );
+				}
 			},
 			getUpload:function(){
-				this.imageUploaded = this.$refs.file.files[0];
-				console.log(this.imageUploaded)
+				let uploadedFiles = this.$refs.files.files;
+
+				/*
+				Adds the uploaded file to the files array
+				*/
+				for( var i = 0; i < uploadedFiles.length; i++ ){
+				this.files.push( uploadedFiles[i] );
+				}
 			},
 			 uplodaImages:function(){
-             let formData = new FormData();
-             let emailData={
-             	photo: this.imageCptured,
-             	image: this.imageUploaded,
-             	opinion:this.textArea,
-             	cardC:this.cardCredit
-             }
-             const dataEm=sendmailService.sendMail({...emailData})
-             .then(data=>{
-             	console.log(data)
-             	this.$router.push({name:'thanks'})
-             }
+             
+				let formData = new FormData();
 
-             	).catch(erro=>console.log('data not sent'))
-               
-            // formData.append('file', this.imageCptured);
-             //
-				// axios.post( '/single-file',
-				// formData,
+				/*
+				Iteate over any file sent over appending the files
+				to the form data.
+				*/
+				for( var i = 0; i < this.files.length; i++ ){
+				let file = this.files[i];
+
+				formData.append('files[' + i + ']', file);
+				}
+				let emailData={
+        
+             	opinion:this.textArea,
+             	cardC:this.cardCredit,
+             	files:formData
+             }
+             const send=sendmailService.sendMail(emailData)
+             .then(res=>console.log(res)).catch(err=>console.log(err))
+				// axios.post( 'http://localhost:5000/maildata',
+				// emailData,
 				// {
 				// headers: {
 				// 'Content-Type': 'multipart/form-data'
 				// }
 				// }
-				// ).then(function(){
-				// console.log('SUCCESS!!');
+				// ).then(res=>{
+				// console.log(res);
+				// this.$router.push({name:'thanks'})
 				// })
-				// .catch(function(){
-				// console.log('FAILURE!!');
+				// .catch((err)=>{
+				// console.log(`FAILURE!!${err}`);
+				// alert('Erro !please try again')
 				// });
 			}
 		}

@@ -3,7 +3,7 @@ const path=require('path');
 const bodyparser=require('body-parser');
 const cors=require('cors');
 const morgan=require('morgan');
-//onst serveStatic = require('serve-static')
+const serveStatic = require('serve-static')
 
 const app=express();
 app.use(morgan('combined'));
@@ -12,11 +12,11 @@ app.use(cors());
 let port =8081;
 
 // rediredct to vue app
-//app.use("/", serveStatic ( path.join ('/client') ) )
-app.use(express.static(__dirname + '/client'));
+app.use("/", serveStatic ( path.join ('/client/dist') ) )
+app.use(express.static(__dirname + '/client/dist'));
 
 // set the home page route
-app.get('/', function(req, res) {
+ app.get('/', function(req, res) {
 
     // ejs render automatically looks in the views folder
     res.render('index');
@@ -36,9 +36,10 @@ app.post('/maildata',(req,res)=>{
     	// 	success:true,
     	// 	message:'Post saved successfully!'
     	// })
+        res.setHeader('content-type', 'multipart/form-data');
         res.send(
         [{
-       status:req.body.status
+       status:req.body
         }]
         )
     })  
