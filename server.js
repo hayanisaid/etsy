@@ -11,7 +11,7 @@ app.use(bodyparser.json());
 app.use(cors());
 
 // rediredct to vue app
-app.use("/", serveStatic ( path.join ('/client/dist') ) )
+app.get("/", serveStatic ( path.join ('/client/dist') ) )
 app.use(express.static(__dirname + '/client/dist'));
 
 
