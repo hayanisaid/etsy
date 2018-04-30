@@ -13,7 +13,11 @@ app.use(cors());
 // rediredct to vue app
 app.get("/", serveStatic ( path.join ('/client/dist') ) )
 app.use(express.static(__dirname + '/client/dist'));
-
+app.set('views', path.join(__dirname, '/client/dist'))
+app.get('/', function(req, res) {
+    //viewname can include or omit the filename extension
+    res.render(__dirname + '/client/dist/index.html'); 
+});
 
 const email =require('./sendmail')
 
