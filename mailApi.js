@@ -32,14 +32,14 @@
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 const msg = {
-  to: 'hayanisaid1995@gmail.com',
-  from: 'hayanisaid1995@gmail.com',
+  to: '',
+  from: '',
   subject: 'Sending with SendGrid is Fun',
   text: 'and easy to do anywhere, even with Node.js',
   html: '<strong>and easy to do anywhere, even with Node.js</strong>',
   server:'smtp.sendgrid.net',
   ports:587,
-  password:'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',
-   username:'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'
+  password:'',
+   username:''
 };
 sgMail.send(msg).then(res=>console.log(res)).catch(err=>console.log(err));
