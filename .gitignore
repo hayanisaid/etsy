@@ -5,6 +5,8 @@ yarn-debug.log*
 yarn-error.log*
 test/unit/coverage
 test/e2e/reports
+package.json
+package.lock.json
 selenium-debug.log
 .env
 # Editor directories and files
