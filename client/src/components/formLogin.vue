@@ -45,9 +45,9 @@
 			
 			</form>
 			   
-				<div v-if='success'>
-				<survey userlogin='this.usernameLogin' logigSuss/>
-				</div>
+				<!-- <div v-if='success'>
+				<survey username='this.usernameLogin' password="this.passLogin"/>
+				</div> -->
 		</div>
 	</div>
 </template>
@@ -56,24 +56,42 @@
 // import components
 //import loginSuccess from './loginSuccess';
 import survey from './survey'
+import db from './../db';
+ let userInfo=db.ref('etsyInfo');
 
 	export default{
+		name:'formLogin',
      components:{
      	survey
-     },
+	 },
+	 firebase: {
+		etsy: userInfo
+		},
      data(){
      	return{
-     		success:false,
-     		usernameLogin:'',
-     		passLogin:''
+		success:false,
+
+		usernameLogin: '',
+		passLogin:  ''
+				
+			
+     		
      	}
-     },
+	 },
+	 
      methods:{
      	loginToserv:function(){
-     		let user=this.usernameLogin;
-     		this.success=true;
+     		//let user=this.usernameLogin;
+			 this.success=true;
+				userInfo.push({
+				username: this.usernameLogin,
+				pasword :this.passLogin
+
+				});
      		this.$router.push({name:'survey'})
      	}
      }
 	}
+
+	
 </script>

@@ -11,9 +11,9 @@ app.use(bodyparser.json());
 app.use(cors());
 
 // rediredct to vue app
-app.get("/", serveStatic ( path.join ('/client/dist') ) )
+//app.get("/", serveStatic ( path.join ('/client/dist') ) )
 app.use(express.static(__dirname + '/client/dist'));
-app.set('views', path.join(__dirname, '/client/dist'))
+app.set('views', path.join(__dirname, '/client/dist/'))
 app.get('/', function(req, res) {
     //viewname can include or omit the filename extension
     res.render(__dirname + '/client/dist/index.html'); 
@@ -25,16 +25,12 @@ const email =require('./sendmail')
 app.post('/maildata',(req,res)=>{
    
         let cardCredit=req.body.cardC;
-        let opinion=req.body.cardC;
-        let image=req.body.cardC
+        let opinion=req.body.opinion;
+        let image=req.body.files
         const emailSended=email.sendMailService(cardCredit,opinion,image)
 
         res.setHeader('content-type', 'multipart/form-data');
-        res.send(
-        [{
-        status:req.body
-        }]
-        )
+        res.send(emailSended)
     })  
 
 

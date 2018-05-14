@@ -5,8 +5,29 @@ $blue:#303044;
 $rlw:"Raleway";
 $pop:'Poppins';
 $fontColor:#666;
+.uploadcare--widget__button_type_open {
+	min-width: 20em;
+	margin:1em;
+	display: block;
+	padding: 10px;
+	color: $orange;
+	font-weight: bold;
+	border:2px solid $orange;
+	font-family: $rlw;
+	background: #f4f4f4;
+	border-radius: 0;
+	&:hover{
+		background: $orange;
+	}
+}
+.uploadcare--button_primary {
+    background: #F97300;
+    border-color: #F97300;
+    color: #fff;
+}
 .survey{
    padding: 1em;
+   margin: 4em auto;
    .main{
    	margin: 1em auto;
    	width: 40em;
@@ -181,11 +202,26 @@ $fontColor:#666;
 	animation:fadeIn .3s linear;
 	animation-timing-function: cubic-bezier(.02,0213,0256,111)
 }
+.fieldtran-leave-active{
+	animation:fadeOut .1s linear;
+}
 @keyframes fadeIn{
 	from{
 		opacity: 0;
+		transform: translateX(-300px)
 	}
 	to{
 		opacity: 1;
+		transform: translateX(0)
+   }
+}
+
+@keyframes fadeOut{
+	from{
+		transform: translateX(0)
+	}
+	to{
+		transform: translateX(300px)
+	
 	}
 }

@@ -1,0 +1,26 @@
+[debug] [2018-04-30T13:00:59.471Z] ----------------------------------------------------------------------
+[debug] [2018-04-30T13:00:59.474Z] Command:       /usr/bin/nodejs /usr/bin/firebase deploy
+[debug] [2018-04-30T13:00:59.474Z] CLI Version:   3.17.4
+[debug] [2018-04-30T13:00:59.474Z] Platform:      linux
+[debug] [2018-04-30T13:00:59.475Z] Node Version:  v9.2.1
+[debug] [2018-04-30T13:00:59.475Z] Time:          Mon Apr 30 2018 14:00:59 GMT+0100 (WEST)
+[debug] [2018-04-30T13:00:59.475Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-04-30T13:00:59.488Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-04-30T13:00:59.489Z] > authorizing via signed-in user
+[debug] [2018-04-30T13:00:59.491Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/etsy-2e9e5  
+  
+ Mon Apr 30 2018 14:00:59 GMT+0100 (WEST)
+[debug] [2018-04-30T13:01:03.554Z] <<< HTTP RESPONSE 200
+[debug] [2018-04-30T13:01:03.556Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/etsy-2e9e5/tokens  
+  
+ Mon Apr 30 2018 14:01:03 GMT+0100 (WEST)
+[debug] [2018-04-30T13:01:04.777Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'etsy-2e9e5'...
+[info] 
+[info] i  deploying hosting
+[info] i  hosting: preparing client/dist directory for upload...
+[debug] [2018-04-30T13:01:14.535Z] >>> HTTP REQUEST PUT https://deploy.firebase.com/v1/hosting/etsy-2e9e5/uploads/-LBLd6A73A-NiMEJOQIN?fileCount=12&message=  
+  
+ Mon Apr 30 2018 14:01:14 GMT+0100 (WEST)
