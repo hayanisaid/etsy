@@ -10,7 +10,7 @@
 //   },
 //   subject: 'Welcome to Email',
 //   senderEmailAddress: 'me@gmail.com',
-//   toAddresses: ['hayanisaid1995@gmail.com', 'me@gmail.com'],
+//   toAddresses: ['name@gmail.com', 'me@gmail.com'],
 
 //   htmlCharset: 'utf16',
 //   textCharset: 'utf16',
